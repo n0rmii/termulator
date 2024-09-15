@@ -1,0 +1,49 @@
+#include <stdlib.h>
+#include <stdint.h>
+#include <math.h>
+#include "trytetype.h"
+
+int8_t trit_to_int(trit_t tritval){
+	if(tritval > 2) exit(4);
+	if(tritval & 0b1) return(1);
+	if(tritval) return(-1);			//if 0b00000010 (-1)
+	return(0);
+}
+
+trit_t int_to_trit(int8_t intval){
+	if(intval > 1 || intval < -1) exit(3);
+	if(intval & 0b10) return(0b10);
+	if(intval) return(0b1);			//if 0b00000001 (1)
+	return(0);
+}
+
+int16_t tryte_to_int(tryte_t tryteval){
+	int16_t intval = 0;
+	int8_t temp;
+	for(int i=0; i<TRITS_PER_TRYTE; i++){
+		intval += pow(trit_to_int((tryteval >> 2*i) & 0b11), i);
+	}
+	return intval;
+}
+
+tryte_t int_to_tryte(int16_t intval){
+	tryte_t tryteval = 0;
+	int8_t rem;
+	//int8_t neg = intval < 0;
+	int16_t workval = intval;
+	//if(neg) workval *= -1;
+	for(int i=0; i<TRITS_PER_TRYTE; i++){
+		rem = workval % 3;
+		workval /= 3;
+		if (rem == 2){
+			rem = -1;
+			workval++;
+		}
+		if (rem == -2){
+			rem = 1;
+			workval--;
+		}
+		tryteval |= int_to_trit(rem) << 2*i;
+	}
+	return tryteval;
+}
