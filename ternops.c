@@ -18,10 +18,10 @@ trit_t int_to_trit(int8_t intval){
 }
 
 int16_t tryte_to_int(tryte_t tryteval){
-	int16_t intval = 0;
+	int32_t intval = 0;
 	int8_t temp;
 	for(int i=0; i<TRITS_PER_TRYTE; i++){
-		intval += pow(trit_to_int((tryteval >> 2*i) & 0b11), i);
+		intval += pow(3, i) * trit_to_int((tryteval >> 2*i) & 0b11);
 	}
 	return intval;
 }
