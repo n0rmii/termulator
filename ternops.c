@@ -17,20 +17,19 @@ trit_t int_to_trit(int8_t intval){
 	return(0);
 }
 
-int16_t tryte_to_int(tryte_t tryteval){
+int32_t tryte_to_int(tryte_t tryteval){
 	int32_t intval = 0;
-	int8_t temp;
 	for(int i=0; i<TRITS_PER_TRYTE; i++){
 		intval += pow(3, i) * trit_to_int((tryteval >> 2*i) & 0b11);
 	}
 	return intval;
 }
 
-tryte_t int_to_tryte(int16_t intval){
+tryte_t int_to_tryte(int32_t intval){
 	tryte_t tryteval = 0;
 	int8_t rem;
 	//int8_t neg = intval < 0;
-	int16_t workval = intval;
+	int32_t workval = intval;
 	//if(neg) workval *= -1;
 	for(int i=0; i<TRITS_PER_TRYTE; i++){
 		rem = workval % 3;
@@ -46,4 +45,35 @@ tryte_t int_to_tryte(int16_t intval){
 		tryteval |= int_to_trit(rem) << 2*i;
 	}
 	return tryteval;
+}
+
+int64_t tword_to_int(tword_t twordval){
+	int64_t intval = 0;
+	for (int i=0; i<TRYTES_PER_TWORD; i++){
+		intval += pow(TRITS_PER_TRYTE, i) * tryte_to_int((twordval >> TRITS_PER_TRYTE*2*i) &
+				  ((1u << ((TRITS_PER_TRYTE*2) & 63)) - 1u));
+	}
+	return intval;
+}
+
+tword_t int_to_tword(int64_t intval){	//Literally just int_to_tryte(), may nest later
+	tword_t twordval = 0;
+	int8_t rem;
+	//int8_t neg = intval < 0;
+	int64_t workval = intval;
+	//if(neg) workval *= -1;
+	for(int i=0; i<TRITS_PER_TRYTE; i++){
+		rem = workval % 3;
+		workval /= 3;
+		if (rem == 2){
+			rem = -1;
+			workval++;
+		}
+		if (rem == -2){
+			rem = 1;
+			workval--;
+		}
+		twordval |= int_to_trit(rem) << 2*i;
+	}
+	return twordval;
 }
