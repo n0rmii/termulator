@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
 	printf("%s\n", "C rewrite");
 
 	int32_t a = 41, b = -41;
-	int64_t b1 = 1234567, b2 = -1234567;
+	int64_t b1 = 9842, b2 = -1234567;
 
 	tryte_t x = int_to_tryte(b1);
 	tryte_t y = int_to_tryte(b2);

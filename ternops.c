@@ -20,7 +20,7 @@ trit_t int_to_trit(int8_t intval){
 int32_t tryte_to_int(tryte_t tryteval){
 	int32_t intval = 0;
 	for(int i=0; i<TRITS_PER_TRYTE; i++){
-		intval += pow(3, i) * trit_to_int((tryteval >> 2*i) & 0b11);
+		intval += pow(3, i) * trit_to_int((tryteval >> 2*i) & 0b11);	//Funny happens when the second tryte enters. investigate
 	}
 	return intval;
 }
