@@ -1,6 +1,6 @@
 #include <stdint.h>
 #include <stdio.h>
-#include "trytetype.h"
+#include "terntype.h"
 #include "ternops.h"
 
 void printb(unsigned int v) {

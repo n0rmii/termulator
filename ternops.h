@@ -2,7 +2,7 @@
 #define TERNOPS_H
 
 #include <stdint.h>
-#include "trytetype.h"
+#include "terntype.h"
 
  int8_t trit_to_int(trit_t tritval);
  trit_t int_to_trit(int8_t intval);

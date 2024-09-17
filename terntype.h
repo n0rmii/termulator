@@ -1,5 +1,5 @@
-#ifndef TRYTETYPE_H
-#define TRYTETYPE_H
+#ifndef TERNTYPE_H
+#define TERNTYPE_H
 
 #include <stdint.h>
 
@@ -13,4 +13,4 @@ typedef uint8_t trybble_t;
 typedef uint32_t tryte_t;
 typedef uint64_t tword_t;
 
-#endif /* TRYTETYPE_H */
+#endif /* TERNTYPE_H */

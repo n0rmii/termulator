@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
-#include "trytetype.h"
+#include "terntype.h"
 
 int8_t trit_to_int(trit_t tritval){
 	if(tritval > 2) exit(4);
