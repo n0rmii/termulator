@@ -23,6 +23,29 @@ int8_t trybble_to_int(trybble_t trybbleval){
 	for(int i=0; i<TRITS_PER_TRYBBLE; i++){
 		intval += pow(3, i) * trit_to_int((trybbleval >> 2*i) & 0b11);
 	}
+	return intval;
+}
+
+trybble_t int_to_trybble(int8_t intval){
+	trybble_t trybbleval = 0;
+	int8_t rem;
+	//int8_t neg = intval < 0;
+	int8_t workval = intval;
+	//if(neg) workval *= -1;
+	for(int i=0; i<TRITS_PER_TRYBBLE; i++){
+		rem = workval % 3;
+		workval /= 3;
+		if (rem == 2){
+			rem = -1;
+			workval++;
+		}
+		if (rem == -2){
+			rem = 1;
+			workval--;
+		}
+		trybbleval |= int_to_trit(rem) << 2*i;
+	}
+	return trybbleval;
 }
 
 int32_t tryte_to_int(tryte_t tryteval){
