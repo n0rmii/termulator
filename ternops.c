@@ -1,3 +1,4 @@
+#include "ternops.h"
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
@@ -15,6 +16,13 @@ trit_t int_to_trit(int8_t intval){
 	if(intval & 0b10) return(0b10);
 	if(intval) return(0b1);			//if 0b00000001 (1)
 	return(0);
+}
+
+int8_t trybble_to_int(trybble_t trybbleval){
+	int8_t intval = 0;
+	for(int i=0; i<TRITS_PER_TRYBBLE; i++){
+		intval += pow(3, i) * trit_to_int((trybbleval >> 2*i) & 0b11);
+	}
 }
 
 int32_t tryte_to_int(tryte_t tryteval){
@@ -59,7 +67,7 @@ tryte_t int_to_tryte(int32_t intval){
 int64_t tword_to_int(tword_t twordval){
 	int64_t intval = 0;
 	for(int i=0; i<TRITS_PER_TRYTE * TRYTES_PER_TWORD; i++){
-		intval += pow(3, i) * trit_to_int((twordval >> 2*i) & 0b11);	//Funny happens when the second tryte enters. investigate
+		intval += pow(3, i) * trit_to_int((twordval >> 2*i) & 0b11);	//May homogenise with tryte_to_int()
 	}
 	return intval;
 }
