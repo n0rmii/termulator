@@ -2,10 +2,11 @@
 #define TERNMEM_H
 
 #include <malloc.h>
+#include "terntype.h"
 
 #define MIN_TERN_MEMORY 27
 #define MAX_TERN_MEMORY 2187
 
-int ternmem_init(size_t memsize);
+void* ternmem_init(unsigned int memsize);
 
 #endif /* TERNMEM_H */
