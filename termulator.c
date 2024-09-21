@@ -3,7 +3,6 @@
 #include "terntype.h"
 #include "ternops.h"
 #include "ternmem.h"
-#include "ternregs.h"
 
 void printb(unsigned int v) {
     unsigned int i, s = 1<<((sizeof(v)<<3)-1); // s = only most significant bit at 1
