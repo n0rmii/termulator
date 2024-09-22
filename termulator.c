@@ -3,17 +3,13 @@
 #include "terntype.h"
 #include "ternops.h"
 #include "ternmem.h"
-
-void printb(unsigned int v) {
-    unsigned int i, s = 1<<((sizeof(v)<<3)-1); // s = only most significant bit at 1
-    for (i = s; i; i>>=1) printf("%d", v & i || 0 );
-	printf("\n");
-}
+#include "printb.h"
 
 int main(int argc, char *argv[]){
 
 	printf("whaddafuf\n");
 	registers[R1] = int_to_tword(-9000954321);
+	printb(registers[R1]);
 	printf("Is this working?: %ld\n", tword_to_int(registers[R1]));
 
 	/* printf("%s\n", "C rewrite");

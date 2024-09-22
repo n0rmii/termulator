@@ -112,7 +112,7 @@ tword_t int_to_tword(int64_t intval){	//Literally just int_to_tryte(), may nest 
 			rem = 1;
 			workval--;
 		}
-		twordval |= int_to_trit(rem) << 2*i;
+		twordval |= ((unsigned long)int_to_trit(rem)) << 2UL*i;
 	}
 	return twordval;
 }
