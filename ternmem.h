@@ -32,6 +32,6 @@ enum reg_enum {
 	RIB  //Instruction Base - Reserved for now, probably useful for loops?
 };
 
-void* ternmem_init(unsigned int memsize);
+int ternmem_init(unsigned int memsize);
 
 #endif /* TERNMEM_H */

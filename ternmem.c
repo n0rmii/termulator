@@ -5,9 +5,11 @@
 
 struct tword_distancer registers[13] = {0};
 
-void* ternmem_init(unsigned int memsize){	//Use console arguments to set program memory space
-	if(memsize < MIN_TERN_MEMORY || memsize > MAX_TERN_MEMORY) return NULL;
-	return calloc(memsize, sizeof(struct tword_distancer));
+int ternmem_init(unsigned int memsize){	//Use console arguments to set program memory space
+	if(memsize < MIN_TERN_MEMORY || memsize > MAX_TERN_MEMORY) return 0;
+	registers[RBP].tword = int_to_tword((signed long)calloc(memsize, sizeof(struct tword_distancer)));
+	registers[RSP].tword = registers[RBP].tword;
+	return 1;
 }
 
 void mov_tword(tword_t* dst, tword_t* src){
