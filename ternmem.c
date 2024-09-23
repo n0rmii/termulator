@@ -3,12 +3,14 @@
 #include "terntype.h"
 #include "ternops.h"
 
-struct tword_distancer registers[13] = {0};
+tword_t registers[13] = {0};
 
 int ternmem_init(unsigned int memsize){	//Use console arguments to set program memory space
 	if(memsize < MIN_TERN_MEMORY || memsize > MAX_TERN_MEMORY) return 0;
-	registers[RBP].tword = int_to_tword((signed long)calloc(memsize, sizeof(struct tword_distancer)));
-	registers[RSP].tword = registers[RBP].tword;
+	//There's a high chance the address is outside tword's range, check it
+	registers[RBP] = int_to_tword((signed long)calloc(memsize, sizeof(tword_t) + 1));
+	if(!registers[RBP]) return 0;
+	registers[RSP] = registers[RBP];
 	return 1;
 }
 
@@ -29,13 +31,13 @@ void mov_trybble(trybble_t* dst, trybble_t* src){
 void stack_push(tword_t* val){
 	//Aligning memory to tword is easier
 	//FIXME: replace this when ternary math
-	registers[RSP].tword = int_to_tword(tword_to_int(registers[RSP].tword) + 9);
-	*(tword_t*)tword_to_int(registers[RSP].tword) = *val;
+	registers[RSP] = int_to_tword(tword_to_int(registers[RSP]) + 9);
+	*(tword_t*)tword_to_int(registers[RSP]) = *val;
 	//God I should not be allowed to cook
 }
 
 tword_t stack_pop(void){
-	tword_t retval = *(tword_t*)tword_to_int(registers[RSP].tword);
-	registers[RSP].tword = int_to_tword(tword_to_int(registers[RSP].tword) - 9);
+	tword_t retval = *(tword_t*)tword_to_int(registers[RSP]);
+	registers[RSP] = int_to_tword(tword_to_int(registers[RSP]) - 9);
 	return retval; //Why am I like this.
 }

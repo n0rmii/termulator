@@ -7,9 +7,9 @@
 int main(int argc, char *argv[]){
 
 	printf("whaddafuf\n");
-	registers[R1].tword = int_to_tword(-9000954321);
-	printb(registers[R1].tword);
-	printf("Is this working?: %ld\n", tword_to_int(registers[R1].tword));
+	registers[R1] = int_to_tword(-9000954321);
+	printb(registers[R1]);
+	printf("Is this working?: %ld\n", tword_to_int(registers[R1]));
 
 	/* printf("%s\n", "C rewrite");
 

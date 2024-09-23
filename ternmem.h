@@ -7,12 +7,7 @@
 #define MAX_TERN_MEMORY 2187
 #define REG_COUNT 13
 
-struct tword_distancer {
-	unsigned long tword;
-	unsigned char trybble;
-};
-
-extern struct tword_distancer registers[];
+extern tword_t registers[];
 
 enum reg_enum {
 	R1,
