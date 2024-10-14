@@ -1,8 +1,16 @@
 #include <stdio.h>
+#include <argp.h>
 #include "terntype.h"
 #include "ternops.h"
 #include "ternmem.h"
 #include "printb.h"
+
+const char *argp_program_version = "termulator v0.0 alpha";
+const char *argp_program_bug_address = "<michal@zywer.pl>";
+static char doc[] = "Termulator - a ternary machine emulator, supporting multiple data types. Still in development.";
+const struct argp_option options[] = {
+	{"memory", 'm', 0, 0, "Specify the amount of memory provided for the emulator in twords (9 bytes per tword)", 0}
+};
 
 int main(int argc, char *argv[]){
 
