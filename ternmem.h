@@ -3,9 +3,8 @@
 
 #include "terntype.h"
 
-#define MIN_TERN_MEMORY 27
-#define MAX_TERN_MEMORY 2187
-#define REG_COUNT 13
+#define MIN_TERN_MEMORY 19683 //3^9
+#define MAX_TERN_MEMORY 387420489 //3^18
 
 extern tword_t registers[];
 
@@ -26,7 +25,5 @@ enum reg_enum {
 		 //from pseudo-assembly to pseudo-machine code
 	RIB  //Instruction Base - Reserved for now, probably useful for loops?
 };
-
-int ternmem_init(unsigned int memsize);
 
 #endif /* TERNMEM_H */

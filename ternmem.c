@@ -1,18 +1,8 @@
-#include <malloc.h>
 #include "ternmem.h"
 #include "terntype.h"
 #include "ternops.h"
 
 tword_t registers[13] = {0};
-
-int ternmem_init(unsigned int memsize){	//Use console arguments to set program memory space
-	if(memsize < MIN_TERN_MEMORY || memsize > MAX_TERN_MEMORY) return 0;
-	//There's a high chance the address is outside tword's range, check it
-	registers[RBP] = int_to_tword((signed long)calloc(memsize, sizeof(tword_t) + 1));
-	if(!registers[RBP]) return 0;
-	registers[RSP] = registers[RBP];
-	return 1;
-}
 
 void mov_tword(tword_t* dst, tword_t* src){
 	*dst = *src;
