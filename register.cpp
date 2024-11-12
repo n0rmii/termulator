@@ -8,7 +8,7 @@ TernaryRegister::TernaryRegister(enum RegisterType regtype)
 
 TernaryRegister::~TernaryRegister(){}
 
-void TernaryRegister::operator= (word_t val)
+/*void TernaryRegister::operator= (word_t val)
 {
 	reg = val;
 }
@@ -33,4 +33,4 @@ TernaryRegister::operator tryte_t() const
 TernaryRegister::operator trybble_t() const
 {
 	return reg & BITMASK(BITS_PER_TRIT * TRITS_PER_TRYBBLE);
-}
+}*/

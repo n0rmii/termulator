@@ -25,17 +25,17 @@ enum RegisterType
 class TernaryRegister
 {
 private:
-	word_t reg;
 	enum RegisterType type;
 public:
+	word_t reg;
 	TernaryRegister(enum RegisterType regtype);
 	~TernaryRegister();
-	void operator= (word_t val);
+	/*void operator= (word_t val);
 	void operator= (tryte_t val);
 	void operator= (trybble_t val);
 	operator word_t() const;
 	operator tryte_t() const;
-	operator trybble_t() const;
+	operator trybble_t() const;*/
 };
 
 #endif /* REGISTER_HPP */

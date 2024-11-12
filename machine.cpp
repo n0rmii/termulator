@@ -27,7 +27,7 @@ Machine::~Machine(){}
 void Machine::SyscallHandler()
 {
 	KernerMode = true;
-	switch ((word_t)R1) {
+	switch (R1.reg) {
 		default:
 			std::cerr<<"SYSCALL ERROR: incorrect syscall number"<<std::endl;
 			exit(10);
